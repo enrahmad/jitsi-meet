@@ -1,27 +1,17 @@
-import { assign, ReducerRegistry, set } from '../../base/redux';
-import {
-    SET_CONFERENCE_TIMESTAMP,
-    SET_CONFERENCE_URL,
-    SET_MIC_MUTED,
-    SET_RECENT_URLS
-} from './actionTypes';
+import { assign, ReducerRegistry } from '../../base/redux';
+import { SET_CONFERENCE_TIMESTAMP, SET_SESSION_ID } from './actionTypes';
 
 const INITIAL_STATE = {
-    conferenceURL: undefined,
-    micMuted: false,
-    recentURLs: [],
     sessionID: new Date().getTime()
 };
 
 /**
- * Reduces the Redux actions of the feature features/recording.
+ * Reduces the Redux actions of the feature features/mobile/watchos.
  */
-ReducerRegistry.register(
-'features/mobile/watchos', (state = INITIAL_STATE, action) => {
+ReducerRegistry.register('features/mobile/watchos', (state = INITIAL_STATE, action) => {
     switch (action.type) {
-    case SET_CONFERENCE_URL: {
+    case SET_SESSION_ID: {
         return assign(state, {
-            conferenceURL: action.conferenceURL,
             sessionID: action.sessionID,
             conferenceTimestamp: 0
         });
@@ -30,12 +20,6 @@ ReducerRegistry.register(
         return assign(state, {
             conferenceTimestamp: action.conferenceTimestamp
         });
-    }
-    case SET_MIC_MUTED: {
-        return set(state, 'micMuted', action.micMuted);
-    }
-    case SET_RECENT_URLS: {
-        return set(state, 'recentURLs', action.recentURLs);
     }
     default:
         return state;
