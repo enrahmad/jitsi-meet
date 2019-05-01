@@ -7,8 +7,7 @@ import {
 } from './actionTypes';
 
 const INITIAL_STATE = {
-    // NOTE for some reason 'null' does not update context
-    conferenceURL: 'NULL',
+    conferenceURL: undefined,
     micMuted: false,
     recentURLs: []
 };

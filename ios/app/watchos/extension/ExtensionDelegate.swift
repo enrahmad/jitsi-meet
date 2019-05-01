@@ -85,12 +85,12 @@ class ExtensionDelegate: NSObject, WCSessionDelegate, WKExtensionDelegate {
             if let currentController = WKExtension.shared().visibleInterfaceController as? InterfaceController {
                 // Go to the in-call controller only if the conference URL has changed, because the user may have
                 // clicked the back button
-                if newContext.conferenceURL != "NULL"
+                if newContext.conferenceURL != nil
                         && self.currentContext.conferenceURL != newContext.conferenceURL {
                       currentController.pushController(withName: "InCallController", context: newContext)
                 }
             } else if let inCallController = WKExtension.shared().visibleInterfaceController as? InCallController {
-                if newContext.conferenceURL == "NULL" {
+                if newContext.conferenceURL == nil {
                       inCallController.popToRootController()
                 } else {
                       inCallController.updateUI(newContext)

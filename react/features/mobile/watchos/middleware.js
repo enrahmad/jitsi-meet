@@ -123,7 +123,7 @@ function _appWillMount({ dispatch, getState }) {
                     /* ensureTrack */ true));
             break;
         case 'hangup':
-            if (_getCurrentConferenceUrl(getState()) !== 'NULL') {
+            if (typeof _getCurrentConferenceUrl(getState()) !== undefined) {
                 dispatch(appNavigate(undefined));
             }
             break;
@@ -149,10 +149,10 @@ function _getCurrentConferenceUrl(stateful) {
 
     // Check if the URL doesn't end with a slash
     if (currentUrl && currentUrl.substr(-1) === '/') {
-        currentUrl = null;
+        currentUrl = undefined;
     }
 
-    return currentUrl ? currentUrl : 'NULL';
+    return currentUrl ? currentUrl : undefined;
 }
 
 /**

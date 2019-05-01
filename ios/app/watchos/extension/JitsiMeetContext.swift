@@ -35,9 +35,9 @@ class JitsiMeetContext {
         joinConferenceURL = jmContext.joinConferenceURL
     }
   
-    var conferenceURL : String {
+    var conferenceURL : String? {
         get {
-            return String(dictionary["conferenceURL"] as? NSString ?? "NULL")
+            return dictionary["conferenceURL"] as? String
         }
     }
   

@@ -65,9 +65,9 @@ class InCallController: WKInterfaceController {
             conferenceURL = joinConferenceURL
         }
 
-        let newRoomName = conferenceURL.components(separatedBy: "/").last ?? ""
+        let newRoomName = conferenceURL != nil ? conferenceURL!.components(separatedBy: "/").last : ""
       
-        roomLabel.setText(newRoomName != "NULL" ? newRoomName : "")
+        roomLabel.setText(newRoomName)
       
         if let newTimestamp = newContext.conferenceTimestamp {
             restartTimer(newTimestamp)
