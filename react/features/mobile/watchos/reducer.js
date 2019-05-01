@@ -9,7 +9,8 @@ import {
 const INITIAL_STATE = {
     conferenceURL: undefined,
     micMuted: false,
-    recentURLs: []
+    recentURLs: [],
+    sessionID: new Date().getTime()
 };
 
 /**
