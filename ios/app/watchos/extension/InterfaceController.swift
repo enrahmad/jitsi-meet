@@ -65,20 +65,6 @@ class InterfaceController: WKInterfaceController {
         }
     }
 
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-    }
-
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-    }
-
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
-    }
-
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         let controller = table.rowController(at: rowIndex) as! MeetingRowController
         let currentContext = ExtensionDelegate.currentJitsiMeetContext
