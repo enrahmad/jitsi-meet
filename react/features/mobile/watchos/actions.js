@@ -1,3 +1,5 @@
+// @flow
+
 import { SET_CONFERENCE_TIMESTAMP, SET_SESSION_ID } from './actionTypes';
 
 /**
@@ -10,7 +12,7 @@ import { SET_CONFERENCE_TIMESTAMP, SET_SESSION_ID } from './actionTypes';
  *      type: SET_CONFERENCE_TIMESTAMP
  * }}
  */
-export function setConferenceTimestamp(conferenceTimestamp) {
+export function setConferenceTimestamp(conferenceTimestamp: number) {
     return {
         type: SET_CONFERENCE_TIMESTAMP,
         conferenceTimestamp

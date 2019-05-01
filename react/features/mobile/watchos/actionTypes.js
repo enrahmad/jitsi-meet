@@ -1,3 +1,5 @@
+// @flow
+
 /**
  * See {@link setConferenceTimestamp} for more details.
  * {
