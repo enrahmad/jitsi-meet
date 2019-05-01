@@ -21,13 +21,13 @@ import WatchKit
 class ExtensionDelegate: NSObject, WCSessionDelegate, WKExtensionDelegate {
 
     var currentContext : JitsiMeetContext = JitsiMeetContext()
-  
+
     static var currentJitsiMeetContext: JitsiMeetContext {
         get {
             return (WKExtension.shared().delegate as! ExtensionDelegate).currentContext
         }
     }
-  
+
     func applicationDidFinishLaunching() {
         // Start Watch Connectivity
         if WCSession.isSupported() {
@@ -71,33 +71,33 @@ class ExtensionDelegate: NSObject, WCSessionDelegate, WKExtensionDelegate {
     }
 
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        let newContext = JitsiMeetContext(context: applicationContext)
+        DispatchQueue.main.async {
+            let newContext = JitsiMeetContext(context: applicationContext)
 
-        print("WATCH got new context: \(newContext.description)");
-      
-        // Update context on the root controller which displays the recent list
-        let controller = WKExtension.shared().rootInterfaceController as! InterfaceController
-        controller.updateUI(newContext)
+            print("WATCH got new context: \(newContext.description)");
 
-        // If the current controller is not the in-call controller and we have a
-        // conference URL, show the in-call controller
-        if let currentController = WKExtension.shared().visibleInterfaceController as? InterfaceController {
-            // Go to the in-call controler only if the conference URL has changed, because the user may have clicked the back button
-            if newContext.conferenceURL != "NULL" && currentContext.conferenceURL != newContext.conferenceURL {
-                DispatchQueue.main.async {
-                    currentController.pushController(withName: "InCallController", context: newContext)
+            // Update context on the root controller which displays the recent list
+            let controller = WKExtension.shared().rootInterfaceController as! InterfaceController
+            controller.updateUI(newContext)
+
+            // If the current controller is not the in-call controller and we have a
+            // conference URL, show the in-call controller
+            if let currentController = WKExtension.shared().visibleInterfaceController as? InterfaceController {
+                // Go to the in-call controller only if the conference URL has changed, because the user may have
+                // clicked the back button
+                if newContext.conferenceURL != "NULL"
+                        && self.currentContext.conferenceURL != newContext.conferenceURL {
+                      currentController.pushController(withName: "InCallController", context: newContext)
+                }
+            } else if let inCallController = WKExtension.shared().visibleInterfaceController as? InCallController {
+                if newContext.conferenceURL == "NULL" {
+                      inCallController.popToRootController()
+                } else {
+                      inCallController.updateUI(newContext)
                 }
             }
-        } else if let inCallController = WKExtension.shared().visibleInterfaceController as? InCallController {
-            if newContext.conferenceURL == "NULL" {
-                DispatchQueue.main.async {
-                    inCallController.popToRootController()
-                }
-            } else {
-                inCallController.updateUI(newContext)
-            }
+
+            self.currentContext = newContext;
         }
-
-        currentContext = newContext;
     }
 }
