@@ -15,6 +15,7 @@ import {
 import { toURLString } from '../../base/util';
 
 import { setConferenceTimestamp, setConferenceURL, setMicMuted, setRecentUrls } from './actions';
+import { CMD_HANG_UP, CMD_JOIN_CONFERENCE, CMD_SET_MUTED } from './constants';
 
 const logger = require('jitsi-meet-logger').getLogger(__filename);
 
@@ -72,7 +73,6 @@ watchOSEnabled && MiddlewareRegistry.register(store => next => action => {
  * @returns {void}
  */
 function _appWillMount({ dispatch, getState }) {
-
     watch.subscribeToWatchState((error, watchState) => {
         if (error) {
             logger.error('Error getting watchState', error);
@@ -107,7 +107,7 @@ function _appWillMount({ dispatch, getState }) {
         }
 
         switch (command) {
-        case 'joinConference': {
+        case CMD_JOIN_CONFERENCE: {
             const newConferenceURL = message.data;
             const oldConferenceURL = _getCurrentConferenceUrl(getState());
 
@@ -116,13 +116,13 @@ function _appWillMount({ dispatch, getState }) {
             }
             break;
         }
-        case 'setMuted':
+        case CMD_SET_MUTED:
             dispatch(
                 setAudioMuted(
                     message.muted === 'true',
                     /* ensureTrack */ true));
             break;
-        case 'hangup':
+        case CMD_HANG_UP:
             if (typeof _getCurrentConferenceUrl(getState()) !== undefined) {
                 dispatch(appNavigate(undefined));
             }

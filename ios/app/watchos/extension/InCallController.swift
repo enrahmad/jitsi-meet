@@ -26,27 +26,32 @@ class InCallController: WKInterfaceController {
     @IBOutlet var timer: WKInterfaceTimer!
 
     @IBAction func hangupClicked() {
-        sendMessage(["command": "hangup"])
+      sendCommand(JitsiMeetCommands.CMD_HANG_UP, message: nil)
     }
 
     @IBAction func muteClicked() {
         if var micMuted = ExtensionDelegate.currentJitsiMeetContext.micMuted {
             micMuted = !micMuted;
-            sendMessage([
-                "command": "setMuted",
-                "muted": micMuted ? "true" : "false"
-            ])
+            sendCommand(
+                JitsiMeetCommands.CMD_SET_MUTED,
+                message: [
+                  "muted": micMuted ? "true" : "false"
+                ])
             updateMutedButton(withMuted: micMuted)
         }
     }
 
-    func sendMessage(_ message: [String : Any]) {
+  func sendCommand(_ command: JitsiMeetCommands, message: [String : Any]?) {
         if WCSession.isSupported() {
             let session = WCSession.default
             var data = [String: Any]()
 
             if let sessionID = ExtensionDelegate.currentJitsiMeetContext.sessionID {
-                message.forEach { data[$0] = $1 }
+                if message != nil {
+                    message!.forEach { data[$0] = $1 }
+                }
+              
+                data["command"] = command.rawValue;
                 data["sessionID"] = sessionID;
               
                 session.sendMessage(data, replyHandler: nil, errorHandler: nil)
@@ -58,10 +63,7 @@ class InCallController: WKInterfaceController {
         var conferenceURL = newContext.conferenceURL
 
         if let joinConferenceURL = newContext.joinConferenceURL {
-            sendMessage([
-                "command": "joinConference",
-                "data" : joinConferenceURL
-            ])
+            sendCommand(JitsiMeetCommands.CMD_JOIN_CONFERENCE, message: [ "data" : joinConferenceURL ])
             conferenceURL = joinConferenceURL
         }
 

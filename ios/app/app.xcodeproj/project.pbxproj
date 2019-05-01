@@ -30,6 +30,7 @@
 		695AF3ED6F686F9C5EE40F9A /* libPods-jitsi-meet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 489E8EFE2C720D10F5961AEF /* libPods-jitsi-meet.a */; };
 		DE4C456121DE1E4E00EA0709 /* FIRUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4C455F21DE1E4E00EA0709 /* FIRUtilities.m */; };
 		E588011722789D43008B0561 /* JitsiMeetContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58801132278944E008B0561 /* JitsiMeetContext.swift */; };
+		E5C97B63227A1EB400199214 /* JitsiMeetCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C97B62227A1EB400199214 /* JitsiMeetCommands.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		DE4C455F21DE1E4E00EA0709 /* FIRUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIRUtilities.m; sourceTree = "<group>"; };
 		DE4C456021DE1E4E00EA0709 /* FIRUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIRUtilities.h; sourceTree = "<group>"; };
 		E58801132278944E008B0561 /* JitsiMeetContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JitsiMeetContext.swift; sourceTree = "<group>"; };
+		E5C97B62227A1EB400199214 /* JitsiMeetCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JitsiMeetCommands.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				0B70016F1F7C51CC005944F4 /* InCallController.swift */,
 				0B5418461F7C5D8C00A2DD86 /* MeetingRowController.swift */,
 				E58801132278944E008B0561 /* JitsiMeetContext.swift */,
+				E5C97B62227A1EB400199214 /* JitsiMeetCommands.swift */,
 			);
 			name = "WatchKit extension";
 			path = watchos/extension;
@@ -533,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B7001701F7C51CC005944F4 /* InCallController.swift in Sources */,
+				E5C97B63227A1EB400199214 /* JitsiMeetCommands.swift in Sources */,
 				0B5418471F7C5D8C00A2DD86 /* MeetingRowController.swift in Sources */,
 				E588011722789D43008B0561 /* JitsiMeetContext.swift in Sources */,
 				0BEA5C391F7B8F73000D0AB4 /* ExtensionDelegate.swift in Sources */,
