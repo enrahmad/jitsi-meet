@@ -381,18 +381,20 @@ export function disconnect() {
 }
 
 /**
- * Sets the location URL of the application, connecton, conference, etc.
+ * Sets the location URL of the application, connection, conference, etc.
  *
- * @param {URL} [locationURL] - The location URL of the application,
- * connection, conference, etc.
+ * @param {URL} [locationURL] - The location URL of the application, connection, conference, etc.
+ * @param {string} [room] - The name of the conference room for which the location URL is being set.
  * @returns {{
  *     type: SET_LOCATION_URL,
- *     locationURL: URL
+ *     locationURL: URL,
+ *     room: string
  * }}
  */
-export function setLocationURL(locationURL: ?URL) {
+export function setLocationURL(locationURL: ?URL, room: ?string) {
     return {
         type: SET_LOCATION_URL,
-        locationURL
+        locationURL,
+        room
     };
 }

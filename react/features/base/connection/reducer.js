@@ -2,7 +2,7 @@
 
 import { SET_ROOM } from '../conference';
 import { JitsiConnectionErrors } from '../lib-jitsi-meet';
-import { assign, set, ReducerRegistry } from '../redux';
+import { assign, ReducerRegistry } from '../redux';
 
 import {
     CONNECTION_DISCONNECTED,
@@ -177,8 +177,11 @@ function _getCurrentConnection(baseConnectionState: Object): ?Object {
  */
 function _setLocationURL(
         state: Object,
-        { locationURL }: { locationURL: ?URL }) {
-    return set(state, 'locationURL', locationURL);
+        { locationURL, room }: { locationURL: ?URL, room: string }) {
+    return assign(state, {
+        locationURL,
+        room: room && room.length ? room : undefined
+    });
 }
 
 /**

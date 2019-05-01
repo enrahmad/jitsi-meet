@@ -20,8 +20,13 @@ export function getInviteURL(stateOrGetState: Function | Object): string {
             ? state
             : state['features/base/connection'].locationURL;
 
+    // The locationURL is only valid for invites if it's for a conference room
+    if (locationURL && !state['features/base/connection'].room) {
+        locationURL = null;
+    }
+
     // If there's no locationURL on the base/connection feature try the base/config where it's set earlier.
-    if (!locationURL) {
+    if (!locationURL && state['features/base/config'].isConferenceRoomConfig) {
         locationURL = state['features/base/config'].locationURL;
     }
 
@@ -41,7 +46,8 @@ export function getInviteURL(stateOrGetState: Function | Object): string {
 export function isInviteURLReady(stateOrGetState: Function | Object): boolean {
     const state = toState(stateOrGetState);
 
-    return Boolean(state['features/base/connection'].locationURL || state['features/base/config'].locationURL);
+    return (state['features/base/connection'].locationURL && state['features/base/connection'].room)
+            || (state['features/base/config'].locationURL && state['features/base/config'].isConferenceRoomConfig);
 }
 
 /**

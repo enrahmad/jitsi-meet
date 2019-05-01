@@ -88,7 +88,7 @@ export function appNavigate(uri: ?string) {
         }
 
         if (getState()['features/base/config'].locationURL === locationURL) {
-            dispatch(setLocationURL(locationURL));
+            dispatch(setLocationURL(locationURL, room));
             dispatch(setConfig(config));
             dispatch(setRoom(room));
         } else {

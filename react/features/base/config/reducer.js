@@ -57,7 +57,12 @@ ReducerRegistry.register(
                  *
                  * @type URL
                  */
-                locationURL: action.locationURL
+                locationURL: action.locationURL,
+
+                /**
+                 * Indicates whether the config is being loaded for a conference room (true) or for a welcome page.
+                 */
+                isConferenceRoomConfig: Boolean(action.room)
             };
 
         case LOAD_CONFIG_ERROR:

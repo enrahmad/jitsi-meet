@@ -147,11 +147,6 @@ function _getCurrentConferenceUrl(stateful) {
         currentUrl = toURLString(getInviteURL(state));
     }
 
-    // Check if the URL doesn't end with a slash
-    if (currentUrl && currentUrl.substr(-1) === '/') {
-        currentUrl = undefined;
-    }
-
     return currentUrl ? currentUrl : undefined;
 }
 
