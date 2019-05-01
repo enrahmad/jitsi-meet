@@ -156,7 +156,7 @@ PODS:
     - React/Core
   - RNVectorIcons (6.0.2):
     - React
-  - RNWatch (0.1.7):
+  - RNWatch (0.2.0):
     - React
   - SDWebImage/Core (4.4.6)
   - SDWebImage/GIF (4.4.6):
@@ -282,7 +282,7 @@ SPEC CHECKSUMS:
   RNGoogleSignin: 361174d9a3090d295b06257162b560d8efc8a6ed
   RNSound: e157320f503bdd4f4ee6d8542e948d54f90c3c3a
   RNVectorIcons: d819334932bcda3332deb3d2c8ea4d069e0b98f9
-  RNWatch: 980e30450c60353f7306bfd0b84441d760c53160
+  RNWatch: 09738b339eceb66e4d80a2371633ca5fb380fa42
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   yoga: 596e61c9b57751d08a22b07aba310dbd3e65ab75
 
