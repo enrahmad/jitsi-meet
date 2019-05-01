@@ -107,6 +107,11 @@ function _appWillMount({ dispatch, getState }) {
         }
 
         switch (command) {
+        case CMD_HANG_UP:
+            if (typeof _getCurrentConferenceUrl(getState()) !== undefined) {
+                dispatch(appNavigate(undefined));
+            }
+            break;
         case CMD_JOIN_CONFERENCE: {
             const newConferenceURL = message.data;
             const oldConferenceURL = _getCurrentConferenceUrl(getState());
@@ -121,11 +126,6 @@ function _appWillMount({ dispatch, getState }) {
                 setAudioMuted(
                     message.muted === 'true',
                     /* ensureTrack */ true));
-            break;
-        case CMD_HANG_UP:
-            if (typeof _getCurrentConferenceUrl(getState()) !== undefined) {
-                dispatch(appNavigate(undefined));
-            }
             break;
         }
     });
